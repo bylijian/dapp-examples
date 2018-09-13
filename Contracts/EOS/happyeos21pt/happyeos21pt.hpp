@@ -34,8 +34,6 @@ class happyeos21pt : public contract {
         void init(const checksum256& hash);
         void test();
         
-        void hit(const account_name player);
-        void stand(const account_name player);
         void reveal(checksum256 &seed, const uint32_t dPoints, const uint32_t pPoints, const checksum256 &hash);
         void onTransfer(account_name from,
                         account_name to,
@@ -44,6 +42,9 @@ class happyeos21pt : public contract {
         
     private:
         void join(const account_name player, const account_name referal, asset eos, const checksum256& seed);
+        void hit(const account_name player);
+        void stand(const account_name player);
+        // void surrender(const account_name player);
         void merge_seed(checksum256 &s1, checksum256 s2);
         checksum256 parse_memo(const std::string &memo) const;
         void add_bet(const account_name player, const checksum256& seed, const asset eos);
@@ -61,7 +62,7 @@ class happyeos21pt : public contract {
             uint64_t id = 0;
             checksum256 hash; // hash of the game seed, 0 when idle.
 
-            uint64_t primary_key() const { return id; }
+            auto primary_key() const { return id; }
             EOSLIB_SERIALIZE(global, (id)(hash)) 
         };
         typedef eosio::multi_index<N(global), global> global_index;
@@ -74,16 +75,16 @@ class happyeos21pt : public contract {
             uint64_t bid;
             checksum256 seed;
 
-            uint64_t primary_key() const { return id; }
+            auto primary_key() const { return id; }
             EOSLIB_SERIALIZE(game, (id)(player)(bid)(seed))
         };
         typedef eosio::multi_index<N(game), game> game_index;
-        game_index games;
+        game_index games;   
 
         
     private:
         void send_referal_bonus(const account_name referal, asset eos);    
-        bool player_win(const uint32_t dPoints, const uint32_t pPoints);
+        bool isplayer_win(const uint32_t dPoints, const uint32_t pPoints);
         void deal_with(game_index::const_iterator itr, const uint32_t dPoints, const uint32_t pPoints);
 
         bool verify(const checksum256 &seed, const uint32_t dPoints, const uint32_t pPoints);

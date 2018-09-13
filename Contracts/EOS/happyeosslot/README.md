@@ -8,8 +8,7 @@ PW5JaGpLtoM1vtD1WxiAC4RDsr82FRUczmKgocw1KJZqVahB4LZ1u
 cleos create account eosio happyeosslot EOS6rRNxJWzdFtKH8MfsdvDci3vnC7QQhcRDA6a8PJV3tz8sEJYZz EOS76hCgV1mfHivJYb7wpbT4PNxxJricYdJCZVo8JtgNWyV4Td1h1
 eosiocpp -o happyeosslot/happyeosslot.wast happyeosslot/happyeosslot.cpp
 eosiocpp -g happyeosslot/happyeosslot.abi happyeosslot/happyeosslot.cpp
-cleos -u http://api-direct.eosasia.one set contract happyeosslot happyeosslot -p happyeosslot@active
-
+cleos -u https://api-kylin.eosasia.one set contract happyeosslot happyeosslot -p happyeosslot@active
 
 cleos -u http://api-direct.eosasia.one push action happyeosslot init '["0196d5b5d9ec1bc78ba927d2db2cb327d836f002601c77bd8c3f144a07ddc737"]' -p happyeosslot@active
 
@@ -27,6 +26,12 @@ cleos push action eosio.token issue '[ "tmonomonomon", "100000000.0000 EOS", "me
 cleos push action eosio.token issue '[ "tmonomonomon", "100000.0000 SYS", "memo" ]' -p eosio
 cleos push action eosio.token issue '[ "happyeosslot", "100000.0000 SYS", "memo" ]' -p eosio
 cleos push action eosio.token transfer '[ "tmonomonomon", "happyeosslot", "1.1000 SYS", "buy" ]' -p tmonomonomon@active
+
+
+
+cleos -u http://api-direct.eosasia.one push action happyeosslot transfer '[ "eosotcbackup", "minakokojima", "0.0001 HPY", "" ]' -p eosotcbackup@active
+
+cleos -u http://api-direct.eosasia.one push action happyeosslot transfer '[ "minakokojima", "eosotcbackup", "0.0001 HPY", "" ]' -p minakokojima@active
 
 # Test
 cleos push action eosio.token transfer '[ "tmonomonomon", "happyeosslot", "1.1000 EOS", "buy" ]' -p tmonomonomon@active
@@ -49,7 +54,7 @@ cleos get table eosio.token happyeosslot accounts
 
 ## Query HPY
 cleos get table happyeosslot tmonomonomon accounts
-cleos -u http://api-direct.eosasia.one get table happyeosslot happyeosslot accounts
+cleos -u https://api-kylin.eosasia.one get table happyeosslot eosotcbackup accounts
 
 ## Sell
 
@@ -84,7 +89,7 @@ cleos push action happyeosslot sell '["tmonomonomon", "10.0000 HPY"]' -p tmonomo
 
 cleos -u https://api-kylin.eosasia.one push action happyeosdice init '["9993a3fa2e1f0d628a1bb9b27b7522ad29aa72881a1a36e39c2af301e86228d3"]' -p happyeosdice@active
 
-cleos -u https://api-kylin.eosasia.one push action eosio.token transfer '["tmonomonomon", "ceshiyongeos", "1.0000 EOS", "buy"]' -p tmonomonomon@active
+cleos -u https://api-kylin.eosasia.one push action happyeosslot transfer '["cryptobuffff", "ceshiyongeos", "200.0000 HPY", "happy weekend"]' -p minakokojima@active
 
 cleos -u https://api-kylin.eosasia.one push action happyeosslot issue '["tmonomonomon", "1.0000 HPY"]' -p happyeosslot@active
 
@@ -123,3 +128,8 @@ cleos -u https://api-kylin.eosasia.one push action happyeosslot test '"tmonomono
 cleos -u https://api-kylin.eosasia.one push action eosio.token transfer '["tmonomonomon", "ceshiyongeos", "9.0000 EOS", "buy"]' -p tmonomonomon@active
 
 cleos -u https://api-kylin.eosasia.one push action eosio.token transfer '["tmonomonomon", "ceshiyongeos", "90.0000 EOS", "buy"]' -p tmonomonomon@active
+
+
+
+
+cleos -u http://api-direct.eosasia.one push action happyeosslot transfer '["minakokojima", "cryptobuffff", "200.0000 HPY", "happy weekends"]' -p minakokojima@active

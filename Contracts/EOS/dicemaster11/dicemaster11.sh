@@ -1,8 +1,10 @@
-/usr/local/eosio/bin/eosiocpp -o happyeosdice/happyeosdice.wast happyeosdice/happyeosdice.cpp
-cleos -u http://api-direct.eosasia.one set contract happyeosdice happyeosdice -p happyeosdice@active
+# /usr/local/eosio/bin/eosiocpp -o happyeos21pt/happyeos21pt.wast happyeos21pt/happyeos21pt.cpp
+
+/usr/local/eosio/bin/eosiocpp -g happyeos21pt/happyeos21pt.abi happyeos21pt/happyeos21pt.cpp
+
+# cleos -u http://api-direct.eosasia.one set contract happyeos21pt happyeos21pt -p happyeos21pt@active
 # cleos -u https://api-kylin.eosasia.one push action happyeosslot init '["0196d5b5d9ec1bc78ba927d2db2cb327d836f002601c77bd8c3f144a07ddc737"]' -p happyeosslot@active
 
-# cleos -u http://api-direct.eosasia.one get table happyeosdice happyeosdice offer
 
 # cleos wallet unlock --password PW5JaGpLtoM1vtD1WxiAC4RDsr82FRUczmKgocw1KJZqVahB4LZ1u
 
